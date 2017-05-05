@@ -1,26 +1,11 @@
-/* global React, ReactDOM  */
-
-const Title = React.createClass({
-  render() {
-
-    const {title, color = 'whitesmoke'} = this.props
-
-    return (
-      React.DOM.div({},
-        React.DOM.h4({
-          style: {
-            color
-          }
-        }, `TITLE PROP : ${title}`)
-      )
-    )
-  }
-})
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Title} from './MyTitle'
 
 const title = React.createFactory(Title)
 
 const Component = React.createClass({
-  render() {
+  render () {
     return (
       React.DOM.div({},
         title({title: 'prop 1', color: 'peru'}),
