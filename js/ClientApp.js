@@ -2,19 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Title} from './MyTitle'
 
-const title = React.createFactory(Title)
-
 const Component = React.createClass({
     render () {
         return (
-            React.DOM.div({},
-                title({title: 'prop 1', color: 'peru'}),
-                title({title: 'prop 2', color: 'goldenrod'}),
-                title({title: 'prop 3', color: 'tomato'}),
-                title({title: 'prop 4', color: 'green'}),
-                title({title: 'prop 5'}),
-                title({title: 'this is cool'})
-            )
+            <div>
+                <Title title="prop 1" color="peru"/>
+                <Title title="prop 2" color="goldenrod"/>
+                <Title title="prop 3" color="tomato"/>
+                <Title title="prop 4" color="green"/>
+                <Title title="prop 5" color="red"/>
+                <Title title="prop 15"/>
+                <Title title="this is cool" color="rebeccapurple"/>
+            </div>
         )
     }
 })
