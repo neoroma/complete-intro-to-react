@@ -25,7 +25,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 },
-                exclude: /(node_modules|bower_components|public)/
+                exclude: /(node_modules|public)/
             }
         ]
     }
