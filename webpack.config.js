@@ -11,7 +11,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['js', 'json']
+        extensions: ['.js', '.json']
     },
     stats: {
         colors: true,
@@ -19,6 +19,14 @@ module.exports = {
         chunks: true
     },
     module: {
-        rules: []
+        rules: [
+            {
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader'
+                },
+                exclude: /(node_modules|bower_components|public)/
+            }
+        ]
     }
 }
