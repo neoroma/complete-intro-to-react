@@ -1,28 +1,30 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {Router, Route} from 'react-router'
+import {Route} from 'react-router'
+import {HashRouter} from 'react-router-dom'
 import {Landing} from './Landing'
+import {Search} from './Search'
+
 import createBrowserHistory from 'history/createBrowserHistory'
 
 import '../public/normalize.css'
 import '../public/style.css'
 
-export class App extends React.Component {
+class App extends React.Component {
 
     render() {
 
         const history = createBrowserHistory()
 
         return (
-            <div className='app'>
-                <Router history={history} >
-                    <Route exactly='/' component={Landing} />
-                </Router>
-            </div>
+            <HashRouter history={history}>
+                <div className='app'>
+                    <Route exact path='/' component={Landing} />
+                    <Route path='/search' component={Search} />
+                </div>
+            </HashRouter>
         )
     }
 }
 
-
-// render(React.createElement(new App()), document.getElementById('app'))
 render(<App />, document.getElementById('app'))
