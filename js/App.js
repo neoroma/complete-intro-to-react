@@ -6,10 +6,10 @@ import '../public/style.css'
 export const App = React.createClass({
     render () {
         return (
-            <div className="app">
-                <div className="landing">
+            <div className='app'>
+                <div className='landing'>
                     <h4>svid-eo</h4>
-                    <input type="text" placeholder="Search"/>
+                    <input type='text' placeholder='Search' />
                     <a>or browse all</a>
                 </div>
             </div>
@@ -18,4 +18,4 @@ export const App = React.createClass({
 })
 
 // render(React.createElement(App), document.getElementById('app'))
-render(<App/>, document.getElementById('app'))
+render(<App />, document.getElementById('app'))
