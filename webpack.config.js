@@ -18,8 +18,19 @@ module.exports = {
         reasons: true,
         chunks: true
     },
+    devServer: {
+        publicPath: '/public/'
+    },
     module: {
         rules: [
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                use: {
+                    loader: 'eslint-loader'
+                },
+                include: path.resolve(__dirname, 'js')
+            },
             {
                 test: /\.js$/,
                 use: {
