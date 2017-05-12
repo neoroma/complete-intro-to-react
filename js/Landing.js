@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export class Landing extends React.Component {
 
@@ -7,7 +8,7 @@ export class Landing extends React.Component {
             <div className='landing'>
                 <h4>SVID_EO</h4>
                 <input type='text' placeholder='Search' />
-                <a>or browse all</a>
+                <Link to='/search'>or browse all</Link>
             </div>
         )
     }
