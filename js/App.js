@@ -1,21 +1,28 @@
 import React from 'react'
 import {render} from 'react-dom'
+import {Router, Route} from 'react-router'
+import {Landing} from './Landing'
+import createBrowserHistory from 'history/createBrowserHistory'
+
 import '../public/normalize.css'
 import '../public/style.css'
 
-export const App = React.createClass({
-    render () {
+export class App extends React.Component {
+
+    render() {
+
+        const history = createBrowserHistory()
+
         return (
             <div className='app'>
-                <div className='landing'>
-                    <h4>svid-eo</h4>
-                    <input type='text' placeholder='Search' />
-                    <a>or browse all</a>
-                </div>
+                <Router history={history} >
+                    <Route exactly='/' component={Landing} />
+                </Router>
             </div>
         )
     }
-})
+}
 
-// render(React.createElement(App), document.getElementById('app'))
+
+// render(React.createElement(new App()), document.getElementById('app'))
 render(<App />, document.getElementById('app'))
