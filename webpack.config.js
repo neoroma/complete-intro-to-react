@@ -33,6 +33,12 @@ module.exports = {
                 include: path.resolve(__dirname, 'js')
             },
             {
+                test: /\.json$/,
+                use: {
+                    loader: 'json-loader'
+                }
+            },
+            {
                 test: /\.js$/,
                 use: {
                     loader: 'babel-loader'
