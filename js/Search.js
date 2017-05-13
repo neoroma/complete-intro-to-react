@@ -3,9 +3,21 @@ import preload from '../public/data.json'
 import R from 'ramda'
 
 const getShows = R.prop('shows')
-const mapToTitle = R.prop('title')
-const toH3 = title => (<h3>{title}</h3>)
-const makeJsx = R.compose(toH3, mapToTitle)
+const getProps = R.pick(['title', 'poster', 'description', 'year'])
+
+// actually render method
+const toMarkUp = ({title, poster, year, description}) => (
+    <div className='show-card'>
+        <img src={`/public/img/posters/${poster}`} />
+        <div>
+            <h3>{title}</h3>
+            <h4>({year})</h4>
+            <p>{description}</p>
+        </div>
+    </div>
+)
+
+const makeJsx = R.compose(toMarkUp, getProps)
 
 const workData = R.compose(R.map(makeJsx), getShows)
 
