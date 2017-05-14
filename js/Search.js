@@ -5,7 +5,7 @@ import {Card as ShowCard} from './Card'
 
 const getShows = R.prop('shows')
 
-const genCardComponent = show => (<ShowCard show={show} />)
+const genCardComponent = show => (<ShowCard show={show} key={show.imdbID} />)
 
 const makeCards = R.map(genCardComponent)
 const handleData = R.compose(makeCards, getShows)
