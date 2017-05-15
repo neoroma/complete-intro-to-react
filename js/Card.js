@@ -1,5 +1,5 @@
 import React from 'react'
-const {shape, string} = React.PropTypes
+import {shape, string} from 'prop-types'
 
 export class Card extends React.Component {
 
