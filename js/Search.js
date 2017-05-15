@@ -10,14 +10,13 @@ const genCardComponent = show => (<ShowCard show={show} key={show.imdbID} />)
 // (<ShowCard {...show} key={show.imdbID} />) will be the same as <ShowCard poster={show.poster} ... />
 
 const makeCards = R.map(genCardComponent)
-const handleData = R.compose(makeCards, getShows)
 
 export class Search extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            searchTerm: 'this is the initial string'
+            searchTerm: ''
         }
         this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
     }
@@ -29,12 +28,19 @@ export class Search extends React.Component {
     }
 
     render() {
+
+        const predicate = R.compose(R.contains(this.state.searchTerm.toLowerCase()), R.toLower, R.prop('title'))
+        const filterByTitle = R.filter(predicate)
+        const handleData = R.compose(makeCards, filterByTitle, getShows)
+
         return (
             <section className='search'>
-                <header>
-                    <h4>{this.state.searchTerm}</h4>
-                    <input value={this.state.searchTerm} onChange={this.handleSearchTermChange} type='text' placeholder='Search' />
-                </header>
+                <div>
+                    <header>
+                        <h4>svideo</h4>
+                        <input value={this.state.searchTerm} onChange={this.handleSearchTermChange} type='text' placeholder='Search' />
+                    </header>
+                </div>
                 <div>{handleData(preload)}</div>
             </section>
         )
