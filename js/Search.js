@@ -7,6 +7,8 @@ const getShows = R.prop('shows')
 
 const genCardComponent = show => (<ShowCard show={show} key={show.imdbID} />)
 
+// (<ShowCard {...show} key={show.imdbID} />) will be the same as <ShowCard poster={show.poster} ... />
+
 const makeCards = R.map(genCardComponent)
 const handleData = R.compose(makeCards, getShows)
 

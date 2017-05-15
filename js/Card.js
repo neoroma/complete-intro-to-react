@@ -3,6 +3,7 @@ const {shape, string} = React.PropTypes
 
 export class Card extends React.Component {
 
+    // should be ripped out for production code
     static propTypes() {
         return {
             show: shape({
