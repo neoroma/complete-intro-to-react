@@ -37,7 +37,7 @@ export class Search extends React.Component {
             <section className='search'>
                 <div>
                     <header>
-                        <h4>svideo</h4>
+                        <h4>SVID-EO</h4>
                         <input value={this.state.searchTerm} onChange={this.handleSearchTermChange} type='text' placeholder='Search' />
                     </header>
                 </div>
