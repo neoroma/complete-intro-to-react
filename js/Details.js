@@ -1,14 +1,10 @@
 import React from 'react'
 
-const getId = ({ match : {params} }) => params.id
+const getId = ({match: {params}}) => params.id
 
-export class Details extends React.Component {
-    render() {
+export const render = (props) => (
+    <div className='details'>
+        <span>{getId(props)}</span>
+    </div>
+)
 
-        return (
-            <div className='details'>
-                <span>{getId(this.props)}</span>
-            </div>
-        )
-    }
-}
