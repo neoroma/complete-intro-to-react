@@ -10,6 +10,7 @@ export class Details extends React.Component {
                 poster: string,
                 year: string,
                 description: string,
+                trailer: string
             })
         }
     }
@@ -19,10 +20,18 @@ export class Details extends React.Component {
 
         return (
             <div className='details'>
+                <header>
+                    <h4>Details</h4>
+                </header>
+                <section>
+                    <div>
+                        {show.title}
+                        <p>{show.description}</p>
+                    </div>
+                    <div><img src={`/public/img/posters/${show.poster}`} /></div>
+                </section>
                 <div>
-                    {show.title}
-                    {show.poster}
-                    {show.description}
+                    <iframe allowFullScreen src={`https://www.youtube-nocookie.com/embed/${show.trailer}?rel=0&amp;controls=0&amp;showinfo=0`} frameBorder='0' />
                 </div>
             </div>
         )
