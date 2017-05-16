@@ -4,3 +4,4 @@ node_modules/
 .DS_Store
 /complete-intro-to-react.iml
 /.idea/
+/coverage/

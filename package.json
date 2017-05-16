@@ -12,7 +12,9 @@
         "lint-fix": "node_modules/.bin/eslint --fix js/**/*.js",
         "lint": "node_modules/.bin/eslint js/**/*.js webpack.config.js",
         "watch": "npm run build -- --watch",
-        "test": "NODE_ENV=test jest"
+        "test": "NODE_ENV=test jest",
+        "test-update": "NODE_ENV=test jest -u",
+        "test-coverage": "NODE_ENV=test jest --coverage"
     },
     "dependencies": {
         "axios": "0.15.2",
