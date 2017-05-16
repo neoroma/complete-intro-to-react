@@ -14,7 +14,6 @@ import '../public/style.css'
 class App extends React.Component {
 
     render() {
-
         return (
             <BrowserRouter>
                 <div className='app'>

@@ -1,6 +1,7 @@
 import React from 'react'
 import R from 'ramda'
 import {Card as ShowCard} from './Card'
+import {shape, arrayOf, object} from 'prop-types'
 
 const getShows = R.prop('shows')
 
@@ -11,6 +12,14 @@ const genCardComponent = show => (<ShowCard show={show} key={show.imdbID} />)
 const makeCards = R.map(genCardComponent)
 
 export class Search extends React.Component {
+
+    static propTypes() {
+        return {
+            data: shape({
+                shows: arrayOf(object)
+            })
+        }
+    }
 
     constructor(props) {
         super(props)
