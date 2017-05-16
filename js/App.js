@@ -1,7 +1,7 @@
 import React from 'react'
 import R from 'ramda'
 import {render} from 'react-dom'
-import {Route} from 'react-router'
+import {Route, Redirect} from 'react-router'
 import {BrowserRouter} from 'react-router-dom'
 import preload from '../public/data.json'
 
@@ -26,7 +26,11 @@ class App extends React.Component {
                 <div className='app'>
                     <Route exact path='/' component={Landing} />
                     <Route path='/search' component={(props) => <Search data={preload} {...props} />} />
-                    <Route path='/details/:id' component={(props) => <Details show={getShow(props)(shows)}  {...props} />} />
+                    <Route path='/details/:id' component={
+                        (props) => getShow(props)(shows)
+                            ? <Details show={getShow(props)(shows)}  {...props} />
+                            : <Redirect to='/search' />
+                    } />
                 </div>
             </BrowserRouter>
         )
