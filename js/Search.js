@@ -1,5 +1,4 @@
 import React from 'react'
-import preload from '../public/data.json'
 import R from 'ramda'
 import {Card as ShowCard} from './Card'
 
@@ -41,7 +40,7 @@ export class Search extends React.Component {
                         <input value={this.state.searchTerm} onChange={this.handleSearchTermChange} type='text' placeholder='Search' />
                     </header>
                 </div>
-                <div>{handleData(preload)}</div>
+                <div>{handleData(this.props.data)}</div>
             </section>
         )
     }
