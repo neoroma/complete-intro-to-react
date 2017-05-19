@@ -1,5 +1,6 @@
 import React from 'react'
 import {shape, string} from 'prop-types'
+import {Header} from './Header'
 
 export class Details extends React.Component {
 
@@ -20,9 +21,7 @@ export class Details extends React.Component {
 
         return (
             <div className='details'>
-                <header>
-                    <h4>Details</h4>
-                </header>
+                <Header />
                 <section>
                     <div>
                         {show.title}

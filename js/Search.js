@@ -1,6 +1,7 @@
 import React from 'react'
 import R from 'ramda'
 import {Card as ShowCard} from './Card'
+import {Header} from './Header'
 import {shape, arrayOf, object} from 'prop-types'
 
 const getShows = R.prop('shows')
@@ -43,12 +44,8 @@ export class Search extends React.Component {
 
         return (
             <section className='search'>
-                <div>
-                    <header>
-                        <h4>SVID-EO</h4>
-                        <input value={this.state.searchTerm} onChange={this.handleSearchTermChange} type='text' placeholder='Search' />
-                    </header>
-                </div>
+                <Header showSearch searchTerm={this.state.searchTerm.toLowerCase()} handleSearchTermChange={this.handleSearchTermChange}
+                />
                 <div>{handleData(this.props.data)}</div>
             </section>
         )
