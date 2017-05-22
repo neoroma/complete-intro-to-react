@@ -22,12 +22,33 @@ export class Search extends React.Component {
         }
     }
 
+    // getInitialState
     constructor(props) {
         super(props)
         this.state = {
             searchTerm: ''
         }
         this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
+    }
+
+    componentWillMount() {
+
+        // will be called on the node env for server side rendering
+        console.log('search: componentWillMount')
+    }
+
+    componentDidMount() {
+
+        // dom api is available
+        // ajax requests
+        console.log('search: componentDidMount')
+    }
+
+    componentWillUnmount() {
+
+        // leaving the dom
+        // remove dom listeners
+        console. log('search: componentWillUnmount')
     }
 
     handleSearchTermChange({target: {value: searchTerm}}) {
@@ -37,7 +58,7 @@ export class Search extends React.Component {
     }
 
     render() {
-
+        console. log('search: render')
         const predicate = R.compose(R.contains(this.state.searchTerm.toLowerCase()), R.toLower, R.prop('title'))
         const filterByTitle = R.filter(predicate)
         const handleData = R.compose(makeCards, filterByTitle, getShows)
