@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import { string, bool, func } from 'prop-types'
 import { connect } from 'react-redux'
 import { setSearchTerm } from './actionCreators'
+import R from 'ramda'
 
 class Header extends React.Component {
 
     constructor(props) {
         super(props)
-
-        this.handler = this.handler.bind(this)
+        this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
     }
 
     static propTypes() {
@@ -20,13 +20,14 @@ class Header extends React.Component {
         }
     }
 
-    handler({target: {value: searchTerm}}) {
-        this.props.dispatch(setSearchTerm(searchTerm))
+    handleSearchTermChange({ target: { value: searchTerm } }) {
+        const app = R.compose(this.props.dispatch, setSearchTerm)
+        app(searchTerm)
     }
 
     searchMarkUp(show, searchTerm) {
         return show
-            ? <input value={searchTerm} onChange={this.handler} type='text' placeholder='Search' />
+            ? <input value={searchTerm} onChange={this.handleSearchTermChange} type='text' placeholder='Search' />
             : <Link to='/search'>Back to search</Link>
     }
 
