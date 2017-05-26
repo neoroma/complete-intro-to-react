@@ -1,8 +1,9 @@
 import React from 'react'
 import R from 'ramda'
-import {Card as ShowCard} from './Card'
-import {Header} from './Header'
-import {shape, arrayOf, object} from 'prop-types'
+import { Card as ShowCard } from './Card'
+import { Header } from './Header'
+import { shape, arrayOf, object, string } from 'prop-types'
+import { connect } from 'react-redux'
 
 const getShows = R.prop('shows')
 
@@ -12,10 +13,11 @@ const genCardComponent = show => (<ShowCard show={show} key={show.imdbID} />)
 
 const makeCards = R.map(genCardComponent)
 
-export class Search extends React.Component {
+class Search extends React.Component {
 
     static propTypes() {
         return {
+            searchTerm: string,
             data: shape({
                 shows: arrayOf(object)
             })
@@ -25,10 +27,6 @@ export class Search extends React.Component {
     // getInitialState
     constructor(props) {
         super(props)
-        this.state = {
-            searchTerm: ''
-        }
-        this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
     }
 
     componentWillMount() {
@@ -51,24 +49,23 @@ export class Search extends React.Component {
         console. log('search: componentWillUnmount')
     }
 
-    handleSearchTermChange({target: {value: searchTerm}}) {
-        this.setState({
-            searchTerm
-        })
-    }
-
     render() {
         console. log('search: render')
-        const predicate = R.compose(R.contains(this.state.searchTerm.toLowerCase()), R.toLower, R.prop('title'))
+        const predicate = R.compose(R.contains(this.props.searchTerm.toLowerCase()), R.toLower, R.prop('title'))
         const filterByTitle = R.filter(predicate)
         const handleData = R.compose(makeCards, filterByTitle, getShows)
 
         return (
             <section className='search'>
-                <Header showSearch searchTerm={this.state.searchTerm.toLowerCase()} handleSearchTermChange={this.handleSearchTermChange}
-                />
+                <Header showSearch />
                 <div>{handleData(this.props.data)}</div>
             </section>
         )
     }
 }
+
+function mapStateToProps({searchTerm}) {
+    return {searchTerm}
+}
+
+export default connect(mapStateToProps)(Search)

@@ -1,34 +1,53 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {func, string, bool} from 'prop-types'
+import { Link } from 'react-router-dom'
+import { string, bool, func } from 'prop-types'
+import { connect } from 'react-redux'
+import { setSearchTerm } from './actionCreators'
 
-export class Header extends React.Component {
+class Header extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+        this.handler = this.handler.bind(this)
+    }
 
     static propTypes() {
         return {
             searchTerm: string,
             showSearch: bool,
-            handleSearchTermChange: func
+            dispatch: func
         }
     }
 
-    searchMarkUp(show, searchTerm, handler) {
+    handler({target: {value: searchTerm}}) {
+        this.props.dispatch(setSearchTerm(searchTerm))
+    }
+
+    searchMarkUp(show, searchTerm) {
         return show
-            ? <input value={searchTerm} onChange={handler} type='text' placeholder='Search' />
+            ? <input value={searchTerm} onChange={this.handler} type='text' placeholder='Search' />
             : <Link to='/search'>Back to search</Link>
     }
 
     render() {
 
-        const { searchTerm, showSearch, handleSearchTermChange } = this.props
+        const { searchTerm, showSearch } = this.props
 
         return (
             <header>
-                <h4 style={{color: 'yellow'}}>
+                <h4 style={{ color: 'yellow' }}>
                     <Link to='/'>SVID_EO</Link>
                 </h4>
-                {this.searchMarkUp(showSearch, searchTerm, handleSearchTermChange)}
+                {this.searchMarkUp(showSearch, searchTerm)}
             </header>
         )
     }
 }
+
+function mapStateToProps({ searchTerm }) {
+    return { searchTerm }
+}
+
+const toExport = connect(mapStateToProps)(Header)
+export { toExport as Header }
