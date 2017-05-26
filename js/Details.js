@@ -1,6 +1,6 @@
 import React from 'react'
-import {shape, string} from 'prop-types'
-import {Header} from './Header'
+import { shape, string } from 'prop-types'
+import { Header } from './Header'
 import zlFetch from 'zl-fetch'
 
 export class Details extends React.Component {
@@ -36,8 +36,6 @@ export class Details extends React.Component {
 
     render() {
         const {show} = this.props
-
-        console.log('rendering')
 
         return (
             <div className='details'>
