@@ -68,4 +68,5 @@ function mapStateToProps({searchTerm}) {
     return {searchTerm}
 }
 
+export const Unwrapped = Search
 export default connect(mapStateToProps)(Search)

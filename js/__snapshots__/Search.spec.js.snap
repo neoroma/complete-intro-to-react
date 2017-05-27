@@ -4,19 +4,9 @@ exports[`Search component snapshot test 1`] = `
 <section
   className="search"
 >
-  <div>
-    <header>
-      <h4>
-        SVID-EO
-      </h4>
-      <input
-        onChange={[Function]}
-        placeholder="Search"
-        type="text"
-        value=""
-      />
-    </header>
-  </div>
+  <Connect(Header)
+    showSearch={true}
+  />
   <div>
     <Card
       show={
