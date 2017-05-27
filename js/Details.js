@@ -1,12 +1,15 @@
 import React from 'react'
-import { shape, string } from 'prop-types'
+import { shape, string, func } from 'prop-types'
 import { Header } from './Header'
-import zlFetch from 'zl-fetch'
+import { connect } from 'react-redux'
+import { getGitHubData } from './actionCreators'
 
-export class Details extends React.Component {
+class Details extends React.Component {
 
     static propTypes() {
         return {
+            dispatch: func,
+            fullName: string,
             show: shape({
                 title: string,
                 poster: string,
@@ -18,20 +21,8 @@ export class Details extends React.Component {
         }
     }
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            fullName: ''
-        }
-    }
-
     componentDidMount() {
-        zlFetch('https://api.github.com/users/chriscoyier/repos')
-            .then(data => data[5].full_name)
-            .then(fullName => this.setState({
-                fullName
-            }))
+        this.props.dispatch(getGitHubData('neoroma'))
     }
 
     render() {
@@ -42,7 +33,7 @@ export class Details extends React.Component {
                 <Header />
                 <section>
 
-                    <h1>full name : {this.state.fullName ? this.state.fullName : 'Loading'}</h1>
+                    <h1>full name : {this.props.fullName ? this.props.fullName : 'Loading'}</h1>
                     <div>
                         {show.title}
                         <p>{show.description}</p>
@@ -55,4 +46,11 @@ export class Details extends React.Component {
             </div>
         )
     }
+}
+
+const toExport = connect(mapStateToProps)(Details)
+export { toExport as Details }
+
+function mapStateToProps({ fullName }) {
+    return { fullName }
 }
