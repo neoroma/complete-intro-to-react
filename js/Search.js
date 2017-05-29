@@ -9,20 +9,9 @@ const getShows = R.prop('shows')
 
 const genCardComponent = show => (<ShowCard show={show} key={show.imdbID} />)
 
-// (<ShowCard {...show} key={show.imdbID} />) will be the same as <ShowCard poster={show.poster} ... />
-
 const makeCards = R.map(genCardComponent)
 
 class Search extends React.Component {
-
-    static propTypes() {
-        return {
-            searchTerm: string,
-            data: shape({
-                shows: arrayOf(object)
-            })
-        }
-    }
 
     // getInitialState
     constructor(props) {
@@ -62,6 +51,13 @@ class Search extends React.Component {
             </section>
         )
     }
+}
+
+Search.propType = {
+    searchTerm: string,
+    data: shape({
+        shows: arrayOf(object)
+    })
 }
 
 function mapStateToProps({searchTerm}) {

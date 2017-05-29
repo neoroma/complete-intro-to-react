@@ -1,5 +1,5 @@
 import React from 'react'
-const {string} = React.PropTypes
+import { string } from 'prop-types'
 
 export const Title = React.createClass({
 
@@ -11,7 +11,7 @@ export const Title = React.createClass({
     },
 
     render () {
-        const {title, color = 'whitesmoke'} = this.props
+        const { title, color = 'whitesmoke' } = this.props
         const style = {
             color
         }
