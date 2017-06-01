@@ -19,6 +19,10 @@ module.exports = {
         reasons: true,
         chunks: true
     },
+    alias: {
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat'
+    },
     devServer: {
         publicPath: '/public/',
         historyApiFallback: true

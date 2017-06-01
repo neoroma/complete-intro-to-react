@@ -12,8 +12,8 @@ class AsyncRoute extends React.Component {
 
     componentDidMount() {
         this.props.loadingPromise
-            .then(module => this.component = module)
-            .then(this.setState({ loaded: true }))
+            .then(module => this.component = module.default)
+            .then(() => this.setState({ loaded: true }))
     }
 
     render() {
